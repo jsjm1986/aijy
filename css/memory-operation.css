@@ -1,0 +1,893 @@
+/* 操作面板布局 */
+.memory-operation {
+    padding: 40px 0;
+}
+
+.operation-panel {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.panel-section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.panel-section:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+/* 上传区域样式 */
+.upload-area {
+    border: 2px dashed var(--border-color);
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    margin: 20px 0;
+    transition: all 0.3s;
+}
+
+.upload-area.dragover {
+    border-color: var(--primary-color);
+    background: rgba(74, 144, 226, 0.1);
+}
+
+.upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.upload-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+/* 操作按钮样式 */
+.operation-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.op-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    background: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.op-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.op-btn:hover:not(:disabled) {
+    background: #357abd;
+}
+
+/* 记忆使用区域样式 */
+.memory-usage {
+    display: grid;
+    gap: 20px;
+}
+
+.usage-type {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.usage-controls {
+    margin: 15px 0;
+}
+
+.usage-controls select,
+.usage-controls input,
+.usage-controls textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.usage-controls textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.context-inputs {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.query-btn,
+.process-btn,
+.retrieve-btn {
+    width: 100%;
+    padding: 10px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.query-btn:hover,
+.process-btn:hover,
+.retrieve-btn:hover {
+    background: #357abd;
+}
+
+.usage-result {
+    margin-top: 15px;
+    padding: 15px;
+    background: white;
+    border-radius: 5px;
+    min-height: 100px;
+    border: 1px solid var(--border-color);
+}
+
+/* 可视化面板样式 */
+.visualization-panel {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+
+.vis-container {
+    margin-top: 20px;
+}
+
+.vis-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.vis-tab {
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    color: var(--secondary-color);
+    cursor: pointer;
+    font-size: 16px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.vis-tab:hover {
+    color: var(--primary-color);
+}
+
+.vis-tab[aria-selected="true"] {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.vis-tab[aria-selected="true"]::after {
+    content: '';
+    position: absolute;
+    bottom: -11px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.vis-content {
+    min-height: 400px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .operation-buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .usage-type {
+        padding: 15px;
+    }
+
+    .vis-tabs {
+        flex-wrap: wrap;
+    }
+
+    .vis-tab {
+        flex: 1;
+        text-align: center;
+    }
+} 
+
+/* 查询提示样式 */
+.query-tips {
+    margin: 10px 0;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.tip {
+    margin: 5px 0;
+    padding-left: 20px;
+    position: relative;
+    color: #666;
+}
+
+.tip::before {
+    content: "💡";
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* 输入格式提示 */
+.input-format {
+    margin-top: 10px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.input-format ul {
+    margin: 5px 0;
+    padding-left: 20px;
+}
+
+.input-format li {
+    margin: 3px 0;
+    color: #666;
+}
+
+/* 处理状态 */
+.processing-status {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.processing-status.loading {
+    background: #e3f2fd;
+    color: var(--primary-color);
+}
+
+.processing-status.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.processing-status.error {
+    background: #ffebee;
+    color: #c62828;
+}
+
+/* 输入组样式 */
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+/* 场景建议 */
+.scene-suggestions {
+    margin-top: 5px;
+    padding: 5px;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    max-height: 150px;
+    overflow-y: auto;
+    display: none;
+}
+
+.scene-suggestions.active {
+    display: block;
+}
+
+.suggestion-item {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background: #f5f5f5;
+}
+
+/* 情感标签 */
+.emotion-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.tag {
+    padding: 5px 12px;
+    background: #f0f0f0;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.tag:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.tag.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* 相似度滑块 */
+.similarity-threshold {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.similarity-threshold input[type="range"] {
+    flex: 1;
+    height: 5px;
+    -webkit-appearance: none;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+.similarity-threshold input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.threshold-value {
+    min-width: 45px;
+    text-align: right;
+    color: var(--secondary-color);
+}
+
+/* 结果展示增强 */
+.usage-result {
+    position: relative;
+}
+
+.usage-result pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.usage-result.loading::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+/* 可视化增强 */
+.vis-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 200px;
+    text-align: center;
+    color: var(--secondary-color);
+    background: #f8f9fa;
+    border-radius: 5px;
+}
+
+.vis-placeholder h3 {
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.vis-placeholder p {
+    color: #666;
+}
+
+/* 动画效果 */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.processing {
+    animation: pulse 1s infinite;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .emotion-tags {
+        gap: 5px;
+    }
+
+    .tag {
+        padding: 3px 8px;
+        font-size: 12px;
+    }
+
+    .similarity-threshold {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .threshold-value {
+        text-align: center;
+    }
+} 
+
+/* 提示框样式 */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.toast.success {
+    background-color: #4caf50;
+}
+
+.toast.error {
+    background-color: #f44336;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 加载动画 */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading::after {
+    content: "⏳";
+    animation: spin 1s linear infinite;
+}
+
+/* 工具提示 */
+[title] {
+    position: relative;
+}
+
+[title]:hover::before {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 12px;
+    border-radius: 3px;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+/* 输入建议动画 */
+.suggestion-item {
+    transition: all 0.2s ease;
+}
+
+.suggestion-item:hover {
+    background: var(--primary-color);
+    color: white;
+    padding-left: 15px;
+}
+
+/* 情感标签动画 */
+.tag {
+    transform-origin: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tag:hover {
+    transform: scale(1.1);
+}
+
+.tag.active {
+    animation: pop 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* 处理状态动画 */
+.processing-status {
+    transition: all 0.3s ease;
+}
+
+.processing-status.loading {
+    position: relative;
+    padding-left: 30px;
+}
+
+.processing-status.loading::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    border: 2px solid var(--primary-color);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* 滑块样式增强 */
+.similarity-threshold input[type="range"] {
+    transition: all 0.3s ease;
+}
+
+.similarity-threshold input[type="range"]:hover {
+    background: #ccc;
+}
+
+.similarity-threshold input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+/* 按钮反馈动画 */
+.query-btn,
+.process-btn,
+.retrieve-btn,
+.op-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.query-btn::after,
+.process-btn::after,
+.retrieve-btn::after,
+.op-btn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+}
+
+.query-btn:active::after,
+.process-btn:active::after,
+.retrieve-btn:active::after,
+.op-btn:active::after {
+    width: 200px;
+    height: 200px;
+}
+
+/* 结果展示动画 */
+.usage-result {
+    transition: all 0.3s ease;
+}
+
+.usage-result:empty {
+    height: 0;
+    padding: 0;
+    opacity: 0;
+}
+
+.usage-result:not(:empty) {
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} 
+
+/* 可视化控制面板 */
+.vis-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 5px;
+}
+
+.zoom-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.zoom-btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    background: var(--primary-color);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.zoom-btn:hover {
+    background: #357abd;
+}
+
+.vis-options {
+    display: flex;
+    gap: 20px;
+}
+
+.vis-options label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.vis-options input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
+/* SVG容器 */
+.vis-svg-container {
+    width: 100%;
+    height: 400px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 图例样式 */
+.vis-legend {
+    margin-top: 20px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 5px;
+}
+
+.legend-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.legend-label {
+    font-size: 12px;
+    color: var(--secondary-color);
+}
+
+/* 知识图谱特定样式 */
+.node-concept {
+    stroke: #fff;
+    stroke-width: 1.5px;
+}
+
+.node-theorem {
+    stroke: #fff;
+    stroke-width: 1.5px;
+}
+
+.edge {
+    stroke-opacity: 0.6;
+    stroke-width: 1;
+}
+
+.edge-label {
+    font-size: 10px;
+    fill: #666;
+}
+
+/* 神经网络特定样式 */
+.layer-connection {
+    stroke: #999;
+    stroke-opacity: 0.2;
+}
+
+.neuron {
+    stroke: #fff;
+    stroke-width: 1.5px;
+}
+
+.layer-label {
+    font-size: 12px;
+    fill: var(--secondary-color);
+}
+
+/* 经验向量特定样式 */
+.experience-point {
+    stroke: #fff;
+    stroke-width: 1px;
+}
+
+.experience-label {
+    font-size: 10px;
+    fill: #666;
+}
+
+/* 动画效果 */
+.node {
+    transition: fill 0.3s;
+}
+
+.node:hover {
+    fill-opacity: 0.8;
+    cursor: pointer;
+}
+
+.edge {
+    transition: stroke-opacity 0.3s;
+}
+
+.edge:hover {
+    stroke-opacity: 1;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .vis-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .zoom-controls {
+        justify-content: center;
+    }
+
+    .vis-options {
+        justify-content: center;
+    }
+
+    .vis-svg-container {
+        height: 300px;
+    }
+
+    .legend-container {
+        justify-content: center;
+    }
+} 
+
+/* 示例记忆包区域 */
+.example-memories {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.example-memories h3 {
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+    font-size: 1.1em;
+}
+
+.example-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.example-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.example-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-color: var(--primary-color);
+}
+
+.memory-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.example-btn span {
+    font-weight: 500;
+    color: var(--secondary-color);
+    margin-bottom: 4px;
+}
+
+.example-btn small {
+    font-size: 0.8em;
+    color: #666;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .example-buttons {
+        grid-template-columns: 1fr;
+    }
+    
+    .example-btn {
+        padding: 12px;
+    }
+} 

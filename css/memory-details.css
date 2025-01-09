@@ -1,0 +1,116 @@
+/* 记忆部分样式 */
+.memory-section {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.memory-section:last-child {
+    border-bottom: none;
+}
+
+.memory-format {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.format-header {
+    background: var(--primary-color);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.format-header h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.badge {
+    background: rgba(255,255,255,0.2);
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+.format-content {
+    padding: 20px;
+}
+
+/* 代码块样式 */
+.code-block {
+    background: #1e1e1e;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+.code-block pre {
+    margin: 0;
+}
+
+.code-block code {
+    color: #d4d4d4;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* 格式说明样式 */
+.format-explanation {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.format-explanation h4 {
+    margin: 0 0 15px 0;
+    color: var(--secondary-color);
+}
+
+.format-explanation ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.format-explanation li {
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.format-explanation li:last-child {
+    margin-bottom: 0;
+}
+
+.format-explanation strong {
+    color: var(--secondary-color);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .format-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .badge {
+        margin-top: 10px;
+    }
+
+    .code-block {
+        font-size: 12px;
+    }
+}
+
+/* 代码高亮颜色 */
+.code-block .string { color: #ce9178; }
+.code-block .number { color: #b5cea8; }
+.code-block .boolean { color: #569cd6; }
+.code-block .null { color: #569cd6; }
+.code-block .key { color: #9cdcfe; }
+.code-block .comment { color: #6a9955; } 

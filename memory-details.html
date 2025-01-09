@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI记忆格式展示</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/memory-details.css">
+    <link rel="stylesheet" href="css/nav.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>AI记忆格式展示</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="memory-operation.html">记忆操作</a></li>
+                    <li><a href="memory-details.html" class="active">记忆格式</a></li>
+                    <li><a href="#knowledge">知识图谱</a></li>
+                    <li><a href="#neural">神经网络</a></li>
+                    <li><a href="#experience">经验向量</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="knowledge" class="memory-section">
+            <div class="container">
+                <h2>知识图谱记忆格式</h2>
+                <div class="memory-format">
+                    <div class="format-header">
+                        <h3>数学知识记忆包示例</h3>
+                        <span class="badge">Knowledge Graph</span>
+                    </div>
+                    <div class="format-content">
+                        <div class="code-block">
+                            <pre><code>{
+    "nodes": [
+        {
+            "id": 1,
+            "type": "concept",
+            "name": "微积分",
+            "attributes": {
+                "difficulty": "advanced",
+                "importance": "high"
+            }
+        },
+        {
+            "id": 2,
+            "type": "theorem",
+            "name": "牛顿-莱布尼茨公式",
+            "attributes": {
+                "field": "calculus",
+                "applications": ["物理", "工程"]
+            }
+        }
+    ],
+    "edges": [
+        {
+            "source": 1,
+            "target": 2,
+            "relationship": "contains",
+            "weight": 0.8
+        }
+    ],
+    "embeddings": {
+        "微积分": [0.1, 0.2, 0.3],
+        "导数": [0.2, 0.3, 0.4]
+    },
+    "context": {
+        "domain": "mathematics",
+        "prerequisites": ["基础代数", "几何"],
+        "learningPath": ["极限", "导数", "积分"]
+    }
+}</code></pre>
+                        </div>
+                        <div class="format-explanation">
+                            <h4>格式说明</h4>
+                            <ul>
+                                <li><strong>nodes</strong>: 知识节点列表，包含概念、定理等</li>
+                                <li><strong>edges</strong>: 节点间的关系连接</li>
+                                <li><strong>embeddings</strong>: 概念的向量表示</li>
+                                <li><strong>context</strong>: 知识的上下文信息</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="neural" class="memory-section">
+            <div class="container">
+                <h2>神经网络记忆格式</h2>
+                <div class="memory-format">
+                    <div class="format-header">
+                        <h3>钢琴技能记忆包示例</h3>
+                        <span class="badge">Neural Weights</span>
+                    </div>
+                    <div class="format-content">
+                        <div class="code-block">
+                            <pre><code>{
+    "layers": [
+        {
+            "name": "input",
+            "neurons": 1000,
+            "activation": "relu"
+        },
+        {
+            "name": "hidden1",
+            "neurons": 500,
+            "activation": "relu"
+        },
+        {
+            "name": "output",
+            "neurons": 100,
+            "activation": "sigmoid"
+        }
+    ],
+    "weights": [
+        "Float32Array(500000)", // 压缩后的权重数据
+        "Float32Array(50000)"   // 压缩后的权重数据
+    ],
+    "biases": [
+        "Float32Array(500)",    // 压缩后的偏置数据
+        "Float32Array(100)"     // 压缩后的偏置数据
+    ],
+    "architecture": {
+        "type": "feedforward",
+        "inputShape": [1000],
+        "outputShape": [100]
+    }
+}</code></pre>
+                        </div>
+                        <div class="format-explanation">
+                            <h4>格式说明</h4>
+                            <ul>
+                                <li><strong>layers</strong>: 神经网络层的结构定义</li>
+                                <li><strong>weights</strong>: 网络权重矩阵</li>
+                                <li><strong>biases</strong>: 偏置值数组</li>
+                                <li><strong>architecture</strong>: 网络架构信息</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="memory-section">
+            <div class="container">
+                <h2>经验向量记忆格式</h2>
+                <div class="memory-format">
+                    <div class="format-header">
+                        <h3>旅行经历记忆包示例</h3>
+                        <span class="badge">Experience Vectors</span>
+                    </div>
+                    <div class="format-content">
+                        <div class="code-block">
+                            <pre><code>{
+    "vectors": [
+        "Float32Array(1024)", // 场景1的经验向量
+        "Float32Array(1024)", // 场景2的经验向量
+        "Float32Array(1024)"  // 场景3的经验向量
+    ],
+    "timestamps": [
+        "2023-01-01T12:00:00Z",
+        "2023-01-02T14:30:00Z",
+        "2023-01-03T09:15:00Z"
+    ],
+    "emotions": [
+        {
+            "joy": 0.8,
+            "surprise": 0.6,
+            "interest": 0.9
+        },
+        {
+            "joy": 0.7,
+            "peace": 0.8,
+            "satisfaction": 0.9
+        },
+        {
+            "excitement": 0.9,
+            "wonder": 0.8,
+            "joy": 0.7
+        }
+    ],
+    "context": {
+        "location": "巴黎",
+        "weather": "晴朗",
+        "companions": ["导游", "游客"],
+        "activities": ["参观博物馆", "品尝美食", "街道漫步"]
+    }
+}</code></pre>
+                        </div>
+                        <div class="format-explanation">
+                            <h4>格式说明</h4>
+                            <ul>
+                                <li><strong>vectors</strong>: 场景经验的向量表示</li>
+                                <li><strong>timestamps</strong>: 经验记录的时间戳</li>
+                                <li><strong>emotions</strong>: 情感状态数据</li>
+                                <li><strong>context</strong>: 场景上下文信息</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 AI记忆交易市场. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+</body>
+</html> 

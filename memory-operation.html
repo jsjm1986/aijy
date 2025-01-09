@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI记忆操作界面</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/memory-operation.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>AI记忆操作界面</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="memory-operation.html" class="active">记忆操作</a></li>
+                    <li><a href="memory-details.html">记忆格式</a></li>
+                    <li><a href="#upload">上传记忆</a></li>
+                    <li><a href="#operate">操作记忆</a></li>
+                    <li><a href="#visualize">可视化</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="memory-operation">
+            <div class="container">
+                <div class="operation-panel">
+                    <div class="panel-section">
+                        <h2>记忆加载</h2>
+                        <div class="upload-area" id="uploadArea">
+                            <input type="file" id="memoryFile" accept=".json,.mem" hidden>
+                            <label for="memoryFile" class="upload-label">
+                                <i class="upload-icon">📤</i>
+                                <span>点击或拖拽记忆包文件</span>
+                            </label>
+                        </div>
+                        <div class="example-memories">
+                            <h3>示例记忆包</h3>
+                            <div class="example-buttons">
+                                <button class="example-btn" data-type="mathKnowledge">
+                                    <i class="memory-icon">📚</i>
+                                    <span>数学知识记忆包</span>
+                                    <small>知识图谱类型</small>
+                                </button>
+                                <button class="example-btn" data-type="pianoSkill">
+                                    <i class="memory-icon">🎹</i>
+                                    <span>钢琴技能记忆包</span>
+                                    <small>神经网络类型</small>
+                                </button>
+                                <button class="example-btn" data-type="travelExperience">
+                                    <i class="memory-icon">🗺️</i>
+                                    <span>旅行经历记忆包</span>
+                                    <small>经验向量类型</small>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="memory-info" id="memoryInfo">
+                            <!-- 记忆信息将在这里显示 -->
+                        </div>
+                    </div>
+
+                    <div class="panel-section">
+                        <h2>记忆操作</h2>
+                        <div class="operation-buttons">
+                            <button class="op-btn" id="extractBtn" disabled>提取记忆</button>
+                            <button class="op-btn" id="mergeBtn" disabled>融合记忆</button>
+                            <button class="op-btn" id="validateBtn" disabled>验证记忆</button>
+                            <button class="op-btn" id="exportBtn" disabled>导出记忆</button>
+                        </div>
+                    </div>
+
+                    <div class="panel-section">
+                        <h2>记忆使用</h2>
+                        <div class="memory-usage">
+                            <div class="usage-type knowledge-usage">
+                                <h3>知识图谱记忆</h3>
+                                <div class="usage-controls">
+                                    <label for="knowledgeQuery">选择查询类型：</label>
+                                    <select id="knowledgeQuery" title="知识图谱查询类型">
+                                        <option value="">选择知识点</option>
+                                        <option value="concept">概念查询</option>
+                                        <option value="relation">关系推理</option>
+                                        <option value="path">学习路径</option>
+                                    </select>
+                                    <div class="query-tips">
+                                        <p class="tip concept-tip">概念查询：搜索和提取特定知识点的详细信息</p>
+                                        <p class="tip relation-tip">关系推理：分析知识点之间的联系和依赖关系</p>
+                                        <p class="tip path-tip">学习路径：获取最优的知识学习顺序建议</p>
+                                    </div>
+                                    <button class="query-btn">查询</button>
+                                </div>
+                                <div class="usage-result"></div>
+                            </div>
+
+                            <div class="usage-type neural-usage">
+                                <h3>神经网络记忆</h3>
+                                <div class="usage-controls">
+                                    <div class="input-area">
+                                        <label for="neuralInput">输入数据：</label>
+                                        <textarea id="neuralInput" placeholder="输入向量数据..." aria-label="神经网络输入数据"></textarea>
+                                        <div class="input-format">
+                                            <p>支持的输入格式：</p>
+                                            <ul>
+                                                <li>JSON数组格式：[1.0, 0.5, 0.8, ...]</li>
+                                                <li>文本描述：将自动转换为向量</li>
+                                                <li>图像URL：将自动提取特征</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <button class="process-btn">处理</button>
+                                    <div class="processing-status"></div>
+                                </div>
+                                <div class="usage-result"></div>
+                            </div>
+
+                            <div class="usage-type experience-usage">
+                                <h3>经验向量记忆</h3>
+                                <div class="usage-controls">
+                                    <div class="context-inputs">
+                                        <div class="input-group">
+                                            <label for="sceneDesc">场景描述：</label>
+                                            <input type="text" id="sceneDesc" placeholder="描述具体场景..." aria-label="场景描述">
+                                            <div class="scene-suggestions"></div>
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="emotionState">情感状态：</label>
+                                            <input type="text" id="emotionState" placeholder="描述情感..." aria-label="情感状态">
+                                            <div class="emotion-tags">
+                                                <span class="tag" data-emotion="joy">喜悦</span>
+                                                <span class="tag" data-emotion="surprise">惊讶</span>
+                                                <span class="tag" data-emotion="peace">平静</span>
+                                                <span class="tag" data-emotion="excitement">兴奋</span>
+                                            </div>
+                                        </div>
+                                        <div class="similarity-threshold">
+                                            <label for="similaritySlider">相似度阈值：</label>
+                                            <input type="range" id="similaritySlider" min="0" max="100" value="80">
+                                            <span class="threshold-value">80%</span>
+                                        </div>
+                                    </div>
+                                    <button class="retrieve-btn">检索相似经验</button>
+                                </div>
+                                <div class="usage-result"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="visualization-panel">
+                    <h2>记忆可视化</h2>
+                    <div class="vis-container">
+                        <div class="vis-tabs" role="tablist">
+                            <button class="vis-tab" role="tab" data-type="graph" aria-selected="true">
+                                知识图谱
+                            </button>
+                            <button class="vis-tab" role="tab" data-type="network" aria-selected="false">
+                                神经网络
+                            </button>
+                            <button class="vis-tab" role="tab" data-type="vector" aria-selected="false">
+                                经验向量
+                            </button>
+                        </div>
+                        <div class="vis-content" id="visContent" role="tabpanel">
+                            <div class="vis-controls">
+                                <div class="zoom-controls">
+                                    <button class="zoom-btn" id="zoomIn" title="放大">+</button>
+                                    <button class="zoom-btn" id="zoomOut" title="缩小">-</button>
+                                    <button class="zoom-btn" id="zoomReset" title="重置">↺</button>
+                                </div>
+                                <div class="vis-options">
+                                    <label>
+                                        <input type="checkbox" id="showLabels" checked>
+                                        显示标签
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="showWeights" checked>
+                                        显示权重
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="vis-svg-container" id="visSvgContainer">
+                                <!-- SVG将在这里动态创建 -->
+                                <div class="vis-placeholder">
+                                    <h3>请先加载记忆数据</h3>
+                                    <p>上传记忆包文件以查看可视化效果</p>
+                                </div>
+                            </div>
+                            <div class="vis-legend">
+                                <!-- 图例将在这里动态创建 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 AI记忆交易市场. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="js/memory-types.js"></script>
+    <script src="js/memory-validator.js"></script>
+    <script src="js/memory-examples.js"></script>
+    <script src="js/memory-visualization.js"></script>
+    <script src="js/memory-operation.js"></script>
+    <script src="js/nav.js"></script>
+
+    <script>
+        window.addEventListener('error', (event) => {
+            console.error('全局错误:', event.error);
+            if (window.manager) {
+                window.manager.showError('操作失败：' + event.error.message);
+            }
+        });
+
+        window.addEventListener('unhandledrejection', (event) => {
+            console.error('未处理的Promise错误:', event.reason);
+            if (window.manager) {
+                window.manager.showError('操作失败：' + event.reason.message);
+            }
+        });
+    </script>
+</body>
+</html> 
